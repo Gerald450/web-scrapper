@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraped Data</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="scraped-data-page">
+    <div class="container">
+        <h1>Scraped Data</h1>
+        <h2>Title: <%= scrapedData.title %></h2>
+        <p class="scraped-url">URL: <%= scrapedData.url %></p>
+
+        <% if (scrapedData.description) { %>
+        <div class="metadata">
+            <h3>Description:</h3>
+            <p><%= scrapedData.description %></p>
+        </div>
+        <% } %>
+
+        <% if (scrapedData.keywords && scrapedData.keywords.length > 0) { %>
+        <div class="metadata">
+            <h3>Keywords:</h3>
+            <p><%= scrapedData.keywords.join(', ') %></p>
+        </div>
+        <% } %>
+
+        <% if (scrapedData.author) { %>
+        <div class="metadata">
+            <h3>Author:</h3>
+            <p><%= scrapedData.author %></p>
+        </div>
+        <% } %>
+
+        <div class="scraped-content">
+            <% if (scrapedData.links && scrapedData.links.length > 0) { %>
+            <h3>Links:</h3>
+            <ul>
+                <% scrapedData.links.forEach(function(link) { %>
+                    <li><a href="<%= link %>" target="_blank"><%= link %></a></li>
+                <% }); %>
+            </ul>
+            <% } %>
+
+            <% if (scrapedData.images && scrapedData.images.length > 0) { %>
+            <h3>Images:</h3>
+            <ul>
+                <% scrapedData.images.forEach(function(image) { %>
+                    <li><a href="<%= image %>" target="_blank"><img src="<%= image %>" alt="Image" style="max-width: 200px;"/></a></li>
+                <% }); %>
+            </ul>
+            <% } %>
+
+            <% if (scrapedData.headings && scrapedData.headings.length > 0) { %>
+            <h3>Headings:</h3>
+            <ul>
+                <% scrapedData.headings.forEach(function(heading) { %>
+                    <li><%= heading %></li>
+                <% }); %>
+            </ul>
+            <% } %>
+
+            <% if (scrapedData.paragraphs && scrapedData.paragraphs.length > 0) { %>
+            <h3>Paragraphs:</h3>
+            <ul>
+                <% scrapedData.paragraphs.forEach(function(paragraph) { %>
+                    <li><%= paragraph %></li>
+                <% }); %>
+            </ul>
+            <% } %>
+
+            <% if (scrapedData.videos && scrapedData.videos.length > 0) { %>
+            <h3>Videos:</h3>
+            <ul>
+                <% scrapedData.videos.forEach(function(video) { %>
+                    <li><a href="<%= video %>" target="_blank"><%= video %></a></li>
+                <% }); %>
+            </ul>
+            <% } %>
+
+            <% if (scrapedData.productDetails) { %>
+            <h3>Product Details:</h3>
+            <p><strong>Name:</strong> <%= scrapedData.productDetails.name %></p>
+            <p><strong>Price:</strong> <%= scrapedData.productDetails.price %></p>
+            <p><strong>Availability:</strong> <%= scrapedData.productDetails.availability %></p>
+            <p><strong>Rating:</strong> <%= scrapedData.productDetails.rating %></p>
+            <% } %>
+        </div>
+
+        <a href="/" class="back-button">Go back</a>
+    </div>
+</body>
+</html>
